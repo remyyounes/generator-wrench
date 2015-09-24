@@ -17,7 +17,7 @@ var ReactBoilerplateGenerator = yeoman.generators.Base.extend({
 
     var prompts = [{
       name: 'componentName',
-      message: 'What is your component\'s name ?'
+      message: 'What is your component\'s name (PascalCase)?'
     },
     {
       type: 'checkbox',
@@ -38,13 +38,12 @@ var ReactBoilerplateGenerator = yeoman.generators.Base.extend({
 
   writing: {
     app: function () {
-      const componentName = this.componentName.toLowerCase();
-
-      const docPath = 'app/views/docs/views/';
-      const componentPath = docPath + componentName;
+      const componentName = this.componentName;
       const routeName = componentName
         .replace(/([a-z])([A-Z])/g, '$1-$2')
         .toLowerCase();
+      const docPath = 'app/views/docs/views/';
+      const componentPath = docPath + routeName;
 
 
       this.fs.copyTpl(
@@ -68,23 +67,22 @@ var ReactBoilerplateGenerator = yeoman.generators.Base.extend({
       this.fs.copyTpl(
         this.templatePath('component-example/views/index/handler.jsx'),
         this.destinationPath(componentPath + '/index/handler.jsx'),
-        { componentName: componentName }
+        { componentName, routeName }
       );
 
 
       this.fs.copyTpl(
         this.templatePath('component-example/views/live/index.js'),
         this.destinationPath(componentPath + '/live/index.js'),
-        { componentName: componentName }
+        { componentName, routeName }
       );
 
       this.fs.copyTpl(
         this.templatePath('component-example/views/live/handler.jsx'),
         this.destinationPath(componentPath + '/live/handler.jsx'),
-        { componentName: componentName }
+        { componentName, routeName }
       );
-
-
+      
     },
   },
 
