@@ -1,6 +1,4 @@
 'use strict';
-var util = require('util');
-var path = require('path');
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
 
@@ -25,11 +23,6 @@ var ReactBoilerplateGenerator = yeoman.generators.Base.extend({
       type: 'checkbox',
       name: 'features',
       message: 'What more would you like?',
-      choices: [{
-          name: 'Bootstrap: The most popular front-end framework for developing responsive, mobile first projects on the web',
-          value: 'includeBootstrap',
-          checked: true
-      }]
     }];
 
     this.prompt(prompts, function (props) {
@@ -46,26 +39,29 @@ var ReactBoilerplateGenerator = yeoman.generators.Base.extend({
     app: function () {
       const componentName = this.componentName.toLowerCase();
 
-      const docPath = "app/views/docs/views/";
+      const docPath = 'app/views/docs/views/';
       const componentPath = docPath + componentName;
+      const routeName = componentName
+        .replace(/([a-z])([A-Z])/g, '$1-$2')
+        .toLowerCase();
 
 
       this.fs.copyTpl(
         this.templatePath('component-example/index.js'),
         this.destinationPath(componentPath + '/index.js'),
-        { componentName: componentName }
+        { componentName, routeName }
       );
 
       this.fs.copyTpl(
         this.templatePath('component-example/handler.jsx'),
         this.destinationPath(componentPath + '/handler.jsx'),
-        { componentName: componentName }
+        { componentName, routeName }
       );
 
       this.fs.copyTpl(
         this.templatePath('component-example/views/index/index.js'),
         this.destinationPath(componentPath + '/index/index.js'),
-        { componentName: componentName }
+        { componentName, routeName }
       );
 
       this.fs.copyTpl(
@@ -89,16 +85,8 @@ var ReactBoilerplateGenerator = yeoman.generators.Base.extend({
 
 
     },
-
-    projectfiles: function () {
-      // this.src.copy('editorconfig', '.editorconfig');
-      // this.src.copy('jshintrc', '.jshintrc');
-    }
   },
 
-  end: function () {
-    // this.installDependencies();
-  }
 });
 
 module.exports = ReactBoilerplateGenerator;

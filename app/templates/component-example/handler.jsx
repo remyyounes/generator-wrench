@@ -8,10 +8,10 @@ export default class Handler extends React.Component {
       <Row>
         <Col xs={12}>
           <Nav bsStyle="tabs" activeKey={1}>
-            <IndexLinkContainer to='/docs/<%= componentName %>'>
+            <IndexLinkContainer to='/docs/<%= routeName %>'>
               <NavItem eventKey={0} title='home'>Index</NavItem>
             </IndexLinkContainer>
-            <IndexLinkContainer to='/docs/<%= componentName %>/live'>
+            <IndexLinkContainer to='/docs/<%= routeName %>/live'>
               <NavItem eventKey={1} title='home'>Live</NavItem>
             </IndexLinkContainer>
           </Nav>

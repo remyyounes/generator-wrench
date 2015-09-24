@@ -1,6 +1,6 @@
 export default {
 
-  path: '<%= componentName %>',
+  path: '<%= routeName %>',
 
   getComponent(location, cb){
     require.ensure([], require => {
