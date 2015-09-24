@@ -23,6 +23,7 @@ var ReactBoilerplateGenerator = yeoman.generators.Base.extend({
       type: 'checkbox',
       name: 'features',
       message: 'What more would you like?',
+      choices: []
     }];
 
     this.prompt(prompts, function (props) {
