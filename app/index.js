@@ -60,29 +60,29 @@ var ReactBoilerplateGenerator = yeoman.generators.Base.extend({
 
       this.fs.copyTpl(
         this.templatePath('component-example/views/index/index.js'),
-        this.destinationPath(componentPath + '/index/index.js'),
+        this.destinationPath(componentPath + '/views/index/index.js'),
         { componentName, routeName }
       );
 
       this.fs.copyTpl(
         this.templatePath('component-example/views/index/handler.jsx'),
-        this.destinationPath(componentPath + '/index/handler.jsx'),
+        this.destinationPath(componentPath + '/views/index/handler.jsx'),
         { componentName, routeName }
       );
 
 
       this.fs.copyTpl(
         this.templatePath('component-example/views/live/index.js'),
-        this.destinationPath(componentPath + '/live/index.js'),
+        this.destinationPath(componentPath + '/views/live/index.js'),
         { componentName, routeName }
       );
 
       this.fs.copyTpl(
         this.templatePath('component-example/views/live/handler.jsx'),
-        this.destinationPath(componentPath + '/live/handler.jsx'),
+        this.destinationPath(componentPath + '/views/live/handler.jsx'),
         { componentName, routeName }
       );
-      
+
     },
   },
 
