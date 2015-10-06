@@ -1,43 +1,42 @@
-'use strict';
-var yeoman = require('yeoman-generator');
-var yosay = require('yosay');
+const yeoman = require('yeoman-generator');
+const yosay = require('yosay');
 
-var ReactBoilerplateGenerator = yeoman.generators.Base.extend({
-  initializing: function () {
+const ReactBoilerplateGenerator = yeoman.generators.Base.extend({
+  initializing() {
     this.pkg = require('../package.json');
   },
 
-  prompting: function () {
-    var done = this.async();
+  prompting() {
+    const done = this.async();
 
     // Have Yeoman greet the user.
     this.log(yosay(
       'Welcome to Procore\'s wrench generator!'
     ));
 
-    var prompts = [{
-      name: 'componentName',
-      message: 'What is your component\'s name (PascalCase)?'
-    },
-    {
-      type: 'checkbox',
-      name: 'features',
-      message: 'What more would you like?',
-      choices: []
-    }];
+    const prompts = [
+      {
+        name: 'componentName',
+        message: 'What is your component\'s name (PascalCase)?',
+      }, {
+        type: 'checkbox',
+        name: 'features',
+        message: 'What more would you like?',
+        choices: [],
+      },
+    ];
 
-    this.prompt(prompts, function (props) {
-      console.log(props);
-      var features = props.features;
+    this.prompt(prompts, props => {
+      const features = props.features;
       function hasFeature(feat) { return features.indexOf(feat) !== -1; }
       this.componentName = props.componentName;
       this.includeBootstrap = hasFeature('includeBootstrap');
       done();
-    }.bind(this));
+    });
   },
 
   writing: {
-    app: function () {
+    app() {
       const componentName = this.componentName;
       const routeName = componentName
         .replace(/([a-z])([A-Z])/g, '$1-$2')
@@ -82,10 +81,8 @@ var ReactBoilerplateGenerator = yeoman.generators.Base.extend({
         this.destinationPath(componentPath + '/views/live/handler.jsx'),
         { componentName, routeName }
       );
-
     },
   },
-
 });
 
 module.exports = ReactBoilerplateGenerator;
