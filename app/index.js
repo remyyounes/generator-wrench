@@ -43,7 +43,7 @@ var ReactBoilerplateGenerator = yeoman.generators.Base.extend({
         .replace(/([a-z])([A-Z])/g, '$1-$2')
         .toLowerCase();
       const docPath = 'app/views/docs/views/';
-      const componentPath = docPath + routeName;
+      const componentPath = docPath + componentName;
 
 
       this.fs.copyTpl(
