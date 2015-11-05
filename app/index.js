@@ -1,7 +1,8 @@
 const yeoman = require('yeoman-generator');
 const yosay = require('yosay');
+const parseDir = require('./lib/parseDir');
 
-const ReactBoilerplateGenerator = yeoman.generators.Base.extend({
+const WrenchTestGenerator = yeoman.generators.Base.extend({
   initializing() {
     this.pkg = require('../package.json');
   },
@@ -11,13 +12,12 @@ const ReactBoilerplateGenerator = yeoman.generators.Base.extend({
 
     // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to Procore\'s wrench generator!'
+      'Welcome to Procore\'s wrench Test generator!'
     ));
 
     const prompts = [
       {
-        name: 'componentName',
-        message: 'What is your component\'s name (PascalCase)?',
+        // name: 'componentName',
       }, {
         type: 'checkbox',
         name: 'features',
@@ -27,62 +27,26 @@ const ReactBoilerplateGenerator = yeoman.generators.Base.extend({
     ];
 
     this.prompt(prompts, props => {
-      const features = props.features;
-      function hasFeature(feat) { return features.indexOf(feat) !== -1; }
       this.componentName = props.componentName;
-      this.includeBootstrap = hasFeature('includeBootstrap');
       done();
     });
   },
 
+  findtest
+
   writing: {
     app() {
-      const componentName = this.componentName;
-      const routeName = componentName
-        .replace(/([a-z])([A-Z])/g, '$1-$2')
-        .toLowerCase();
-      const docPath = 'app/views/docs/views/';
-      const componentPath = docPath + componentName;
-
-
-      this.fs.copyTpl(
-        this.templatePath('component-example/index.js'),
-        this.destinationPath(componentPath + '/index.js'),
-        { componentName, routeName }
-      );
-
-      this.fs.copyTpl(
-        this.templatePath('component-example/handler.jsx'),
-        this.destinationPath(componentPath + '/handler.jsx'),
-        { componentName, routeName }
-      );
-
-      this.fs.copyTpl(
-        this.templatePath('component-example/views/index/index.js'),
-        this.destinationPath(componentPath + '/views/index/index.js'),
-        { componentName, routeName }
-      );
-
-      this.fs.copyTpl(
-        this.templatePath('component-example/views/index/handler.jsx'),
-        this.destinationPath(componentPath + '/views/index/handler.jsx'),
-        { componentName, routeName }
-      );
-
-
-      this.fs.copyTpl(
-        this.templatePath('component-example/views/live/index.js'),
-        this.destinationPath(componentPath + '/views/live/index.js'),
-        { componentName, routeName }
-      );
-
-      this.fs.copyTpl(
-        this.templatePath('component-example/views/live/handler.jsx'),
-        this.destinationPath(componentPath + '/views/live/handler.jsx'),
-        { componentName, routeName }
-      );
+      const files = parseDir('.');
+      files.map( (file) {
+        maketest(file);
+      };
+      // this.fs.copyTpl(
+      //   this.templatePath('component-example/views/live/handler.jsx'),
+      //   this.destinationPath(componentPath + '/views/live/handler.jsx'),
+      //   { componentName, routeName }
+      // );
     },
   },
 });
 
-module.exports = ReactBoilerplateGenerator;
+module.exports = WrenchTestGenerator;

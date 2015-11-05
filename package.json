@@ -1,6 +1,6 @@
 {
-  "name": "generator-wrench",
-  "version": "0.2.1",
+  "name": "generator-wrench-test",
+  "version": "0.1.0",
   "description": "doc generator for wrench",
   "files": [
     "app",
@@ -11,9 +11,10 @@
   ],
   "dependencies": {
     "chalk": "^0.5.0",
+    "glob": "^5.0.15",
+    "ramda": "^0.18.0",
     "yeoman-generator": "^0.20.3",
-    "yosay": "^0.3.0",
-    "underscore.string": "^2.3.3"
+    "yosay": "^0.3.0"
   },
   "main": "app/index.js",
   "devDependencies": {
@@ -27,12 +28,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/remyyounes/generator-wrench.git"
+    "url": "https://github.com/remyyounes/generator-wrench-test.git"
   },
   "author": "remyyounes",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/remyyounes/generator-wrench/issues"
+    "url": "https://github.com/remyyounes/generator-wrench-test/issues"
   },
-  "homepage": "https://github.com/remyyounes/generator-wrench"
+  "homepage": "https://github.com/remyyounes/generator-wrench-test"
 }
